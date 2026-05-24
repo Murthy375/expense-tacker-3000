@@ -12,7 +12,7 @@ A tracker to track where you spend and waste your hard earned money.
 - pnpm
 - Redis
 - PostgreSQL
-
+- TypeScript
 
 ## Prerequisites
 
