@@ -1,5 +1,16 @@
 {
+  "name": "expense-tracker-3000",
+  "version": "1.0.0",
+  "description": "A tracker to track where you spend and waste your hard earned money.",
+  "main": "dist/index.js",
+  "packageManager": "pnpm@11.2.2",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "devDependencies": {
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "tsx": "^4.0.0"
   }
 }
