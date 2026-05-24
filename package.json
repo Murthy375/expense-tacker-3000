@@ -4,6 +4,7 @@
   "description": "A tracker to track where you spend and waste your hard earned money.",
   "main": "dist/index.js",
   "packageManager": "pnpm@11.2.2",
+  "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsc",
@@ -17,6 +18,8 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
     "pg": "^8.21.0"
   }
