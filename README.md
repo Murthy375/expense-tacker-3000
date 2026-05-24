@@ -37,6 +37,30 @@ function App() {
 }
 ```
 
+## API Reference
+
+#### Register
+
+```http
+POST /api/auth/register
+```
+
+| Parameter | Type | Description |
+| :-------- | :--- | :---------- |
+| `email` | `string` | **Required**. Your email |
+| `username` | `string` | **Required**. Your username |
+| `password` | `string` | **Required**. Your password |
+
+#### Login
+
+```http
+POST /api/auth/login
+```
+
+| Parameter | Type | Description |
+| :-------- | :--- | :---------- |
+| `email` | `string` | **Required**. Your email |
+| `password` | `string` | **Required**. Your password |
 
 ## License
 
