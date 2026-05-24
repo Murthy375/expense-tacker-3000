@@ -9,7 +9,6 @@ A tracker to track where you spend and waste your hard earned money.
 **Server:** 
 - Node
 - Express
-- pnpm
 - Redis
 - PostgreSQL
 - TypeScript
