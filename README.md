@@ -63,7 +63,7 @@ POST /api/auth/login
 
 ## License
 
-```ru
+```
 MIT License
 
 Copyright (c) 2026 Sridhar Murthy K Chandra
