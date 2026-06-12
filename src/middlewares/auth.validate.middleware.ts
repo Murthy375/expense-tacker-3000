@@ -1,17 +1,13 @@
 import { registerPostRequestBodySchema } from "../validations/auth.validation.js";
 
-/**
- * @param {import("express").Request} req
- * @param {import("express").Response} res
- * @param {import("express").NextFunction} next
- */
+import type { Request, Response, NextFunction } from "express";
 
-export const validateRegisterRequest = async (
-  req: any,
-  res: any,
-  next: any,
+export const validateRegisterRequest = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
 ) => {
-  const validationResult = await registerPostRequestBodySchema.safeParse(
+  const validationResult = registerPostRequestBodySchema.safeParse(
     req.body,
   );
 
@@ -19,6 +15,6 @@ export const validateRegisterRequest = async (
     return res.status(400).json({ error: validationResult.error.format() });
   }
 
-  req.validationResult = validationResult;
+  req.body = validationResult.data;
   next();
 };
