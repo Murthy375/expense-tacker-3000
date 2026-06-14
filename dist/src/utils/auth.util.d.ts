@@ -1,2 +1,2 @@
-export declare const hashPassword: (password: string) => (password: string) => /*elided*/ any;
+export declare const hashPassword: (password: string) => string;
 //# sourceMappingURL=auth.util.d.ts.map

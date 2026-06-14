@@ -1,11 +1,11 @@
 import db from "../models/connect-orm-db.js";
 import { userTable } from "../models/schema.js";
 import { eq } from "drizzle-orm";
-// idk why is redis needed here?
-// import { Redis } from "ioredis";
-// const redisClient = new Redis();
+import { Redis } from "ioredis";
 import { AppError } from "../utils/AppError.js";
 import { hashPassword } from "../utils/auth.util.js";
+const redisClient = new Redis();
+// --------------------------------- //
 async function getUserByEmail(email) {
     const [existingUser] = await db
         .select({
@@ -21,17 +21,24 @@ async function getUserByEmail(email) {
 }
 const createUser = async (data) => {
     const hashedPassword = hashPassword(data.password);
-    const user = await db.insert(userTable).values({
+    const user = await db
+        .insert(userTable)
+        .values({
         userName: data.userName,
         email: data.email,
-        password: data.password,
+        password: hashedPassword,
+    })
+        .returning({
+        userName: userTable.userName,
     });
+    return user;
 };
-const registerNewUser = async (data) => {
+export const registerNewUser = async (data) => {
     const existingUser = await getUserByEmail(data.email);
     if (existingUser) {
-        throw new AppError(`user ${existingUser}already existes`, 409);
+        throw new AppError(`user ${existingUser.userName} already existes`, 409);
     }
     const newlyCreatedUser = await createUser(data);
+    return newlyCreatedUser;
 };
 //# sourceMappingURL=auth.service.js.map
