@@ -83,7 +83,7 @@ export declare const userTable: import("drizzle-orm/pg-core").PgTableWithColumns
             columnType: "PgTimestamp";
             data: Date;
             driverParam: string;
-            notNull: false;
+            notNull: true;
             hasDefault: true;
             isPrimaryKey: false;
             isAutoincrement: false;

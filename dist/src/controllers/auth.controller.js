@@ -1,24 +1,28 @@
-import { registerNewUser } from "../services/auth.service.js";
-import { AppError } from "../utils/AppError.js";
-export const registerUserController = async (req, res) => {
+import { registerNewUser, loginUser } from "../services/auth.service.js";
+// ------------------------------------------------------------- //
+export const registerUserController = async (req, res, next) => {
     try {
         const validationResult = req.body;
         const newlyRegisteredUser = await registerNewUser(validationResult);
-        return res.status(200).json({ success: true, data: newlyRegisteredUser });
+        res.status(201).json({ success: true, data: newlyRegisteredUser });
     }
     catch (error) {
-        if (error instanceof AppError) {
-            return res.status(error.status).json({
-                success: false,
-                message: error.message,
-            });
-        }
-        return res.status(500).json({
-            success: false,
-            message: "something went wrong",
-        });
+        next(error);
     }
 };
-// export const loginUserController = async (req: Request, res: Response): Promise<Response> => {
-// }
+export const loginUserController = async (req, res, next) => {
+    try {
+        const validationResult = req.body;
+        const { token, userExists } = await loginUser(validationResult);
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "strict",
+        });
+        res.status(200).json({ success: true, data: userExists });
+    }
+    catch (error) {
+        next(error);
+    }
+};
 //# sourceMappingURL=auth.controller.js.map
