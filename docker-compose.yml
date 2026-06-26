@@ -20,6 +20,12 @@ services:
       - redis_data:/data
     command: redis-server --appendonly yes
 
+  redisinsight:
+    image: redis/redisinsight:latest
+    restart: always
+    ports:
+      - "5540:5540"
+
 volumes:
   db_data:
   redis_data:
