@@ -2,16 +2,12 @@ import db from "../models/connect-orm-db.js";
 import { userTable } from "../models/schema.js";
 import { eq } from "drizzle-orm";
 
-// import { Redis } from "ioredis";
-
 import { AppError } from "../utils/AppError.js";
 import {
   hashPassword,
   comparePassword,
   generateJwtToken,
 } from "../utils/auth.util.js";
-
-// const redisClient = new Redis();
 
 // --------------------------------- //
 

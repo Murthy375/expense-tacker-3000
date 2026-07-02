@@ -12,5 +12,7 @@ export const validateLoginRequest = (req, res, next) => {
     if (validationResult.error) {
         return res.status(400).json({ error: validationResult.error.format() });
     }
+    req.body = validationResult.data;
+    next();
 };
 //# sourceMappingURL=auth.validate.middleware.js.map

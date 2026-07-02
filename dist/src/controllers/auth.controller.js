@@ -19,7 +19,14 @@ export const loginUserController = async (req, res, next) => {
             secure: false,
             sameSite: "strict",
         });
-        res.status(200).json({ success: true, data: userExists });
+        const userData = {
+            id: userExists.id,
+            userName: userExists.userName,
+            email: userExists.email,
+            createdAt: userExists.createdAt,
+            updatedAt: userExists.updatedAt,
+        };
+        res.status(200).json({ success: true, data: userData });
     }
     catch (error) {
         next(error);
