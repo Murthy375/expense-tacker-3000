@@ -8,7 +8,7 @@ import { redisClient } from "../models/connect-redis.js";
 
 export const queryUserProfile = async (userId: string) => {
   // check in redis
-  const cachedUserData = await redisClient.hgetall(`user:${userId}`);
+  const cachedUserData = await redisClient.hgetall(`user:${userId}:profile`);
 
   if (Object.keys(cachedUserData).length > 0) {
     return cachedUserData;
@@ -27,8 +27,8 @@ export const queryUserProfile = async (userId: string) => {
     .where(eq(userTable.id, userId));
 
   if (dbUserData) {
-    await redisClient.hset(`user:${userId}`, dbUserData);
-    await redisClient.expire(`user:${userId}`, 30);
+    await redisClient.hset(`user:${userId}:profile`, dbUserData);
+    await redisClient.expire(`user:${userId}:profile`, 30);
   }
 
   return dbUserData;
