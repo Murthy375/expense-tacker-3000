@@ -2,6 +2,8 @@ import db from "../models/connect-orm-db.js";
 import { userTable } from "../models/schema.js";
 import { eq } from "drizzle-orm";
 
+import { redisClient } from "../models/connect-redis.js";
+
 import { AppError } from "../utils/AppError.js";
 import {
   hashPassword,
@@ -117,6 +119,10 @@ export const loginUser = async (data: LoginUserData) => {
   };
 
   const token = generateJwtToken(payload);
+
+  // save user data in redis
+  await redisClient.hset(`user:${userExists.id}:profile`, userExists)
+  await redisClient.expire(`user:${userExists.id}:profile`, 3600)
 
   return { token, userExists };
 };
