@@ -10,10 +10,7 @@ export const authUser = (
     const token = req.cookies["token"];
 
     if (!token) {
-      res
-        .status(401)
-        .json({ message: `un-authorized, token must be provided` });
-      return;
+      return next();
     }
 
     const decodedToken = jwt.verify(token!, process.env.JWT_SECRET_KEY!);
@@ -34,5 +31,5 @@ export const ensureUserAuth = (
   if (!req.user) {
     res.status(401).json({ message: `not authenticated, user not verified` });
   }
-  next()
+  next();
 };
