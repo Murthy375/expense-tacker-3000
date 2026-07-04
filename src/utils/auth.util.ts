@@ -12,8 +12,8 @@ export const hashPassword = (password: string): string => {
 export const comparePassword = (
   password: string,
   hashedPassword: string,
-): boolean => {
-  return bcrypt.compareSync(password, hashedPassword);
+): Promise<boolean> => {
+  return bcrypt.compare(password, hashedPassword);
 };
 
 interface PayloadType {
