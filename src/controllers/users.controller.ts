@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import type { JwtPayload } from "jsonwebtoken";
 
-import { queryUserProfile } from "../services/user.service.js";
+import { queryUserProfile } from "../services/users.service.js";
 
 // ---------------------------------------------------------------- //
 

@@ -1,23 +1,22 @@
 import jwt from "jsonwebtoken";
 export const authUser = (req, res, next) => {
     try {
-        const tokenHeader = req.cookies["token"];
-        if (!tokenHeader) {
+        const token = req.cookies["token"];
+        if (!token) {
             return next();
         }
-        if (!tokenHeader?.startsWith("Bearer ")) {
-            res.status(400).json({
-                message: `authentication header does not start with "Bearer"`,
-            });
-            return;
-        }
-        const token = tokenHeader?.split(" ")[1];
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
         req.user = decodedToken;
         next();
     }
     catch (error) {
-        next(error);
+        next();
     }
+};
+export const ensureUserAuth = (req, res, next) => {
+    if (!req.user) {
+        res.status(401).json({ message: `not authenticated, user not verified` });
+    }
+    next();
 };
 //# sourceMappingURL=auth.middleware.js.map

@@ -1,6 +1,6 @@
 import "dotenv/config";
 export declare const hashPassword: (password: string) => string;
-export declare const comparePassword: (password: string, hashedPassword: string) => boolean;
+export declare const comparePassword: (password: string, hashedPassword: string) => Promise<boolean>;
 interface PayloadType {
     id: string;
     createdAt: Date;

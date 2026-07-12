@@ -7,7 +7,7 @@ export const hashPassword = (password) => {
     return hashedPassword;
 };
 export const comparePassword = (password, hashedPassword) => {
-    return bcrypt.compareSync(password, hashedPassword);
+    return bcrypt.compare(password, hashedPassword);
 };
 export const generateJwtToken = (payload) => {
     const secret = process.env.JWT_SECRET_KEY;
