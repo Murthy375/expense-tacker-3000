@@ -8,6 +8,13 @@
       "when": 1782442840531,
       "tag": "0000_chief_iron_lad",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784989937909,
+      "tag": "0001_amusing_valeria_richards",
+      "breakpoints": true
     }
   ]
 }

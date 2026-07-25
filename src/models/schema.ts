@@ -5,6 +5,7 @@ import {
   numeric,
   text,
   uuid,
+  unique,
 } from "drizzle-orm/pg-core";
 
 export const userTable = pgTable("users", {
@@ -18,16 +19,22 @@ export const userTable = pgTable("users", {
     .$onUpdate(() => new Date()),
 });
 
-export const categoryTable = pgTable("categories", {
-  id: uuid().primaryKey().defaultRandom(),
-  userId: uuid().references(() => userTable.id),
-  categoryName: varchar({ length: 255 }).notNull().unique(),
-  createdAt: timestamp().defaultNow(),
-  updatedAt: timestamp()
-    .defaultNow()
-    .$onUpdate(() => new Date()), // the .$onUpdate() updates the timestamp whenever the row is modified (uses the current date + time)
-  // and the .defaultNow() sets the timestamp when the row is created
-});
+export const categoryTable = pgTable(
+  "categories",
+  {
+    id: uuid().primaryKey().defaultRandom(),
+    userId: uuid().references(() => userTable.id),
+    categoryName: varchar({ length: 255 }).notNull(),
+    createdAt: timestamp().defaultNow(),
+    updatedAt: timestamp()
+      .defaultNow()
+      .$onUpdate(() => new Date()), // the .$onUpdate() updates the timestamp whenever the row is modified (uses the current date + time)
+    // and the .defaultNow() sets the timestamp when the row is created
+  },
+  (table) => ({
+    uniqueUserCategory: unique().on(table.userId, table.categoryName),
+  }),
+);
 
 export const expenseTable = pgTable("expenses", {
   id: uuid().primaryKey().defaultRandom(),

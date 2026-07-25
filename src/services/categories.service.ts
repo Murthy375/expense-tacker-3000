@@ -27,7 +27,7 @@ export const createCategory = async (categoryName: string, userId: string) => {
     throw new AppError(`category already exists`, 409);
   }
 
-  const categoryCreated = db
+  const categoryCreated = await db
     .insert(categoryTable)
     .values({ categoryName: categoryName, userId: userId })
     .returning();

@@ -1,4 +1,4 @@
-export declare const createCategory: (categoryName: string) => Promise<{
+export declare const createCategory: (categoryName: string, userId: string) => Promise<{
     id: string;
     createdAt: Date | null;
     updatedAt: Date | null;

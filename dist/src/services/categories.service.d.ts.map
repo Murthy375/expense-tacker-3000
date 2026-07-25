@@ -1,1 +1,1 @@
-{"version":3,"file":"categories.service.d.ts","sourceRoot":"","sources":["../../../src/services/categories.service.ts"],"names":[],"mappings":"AAcA,eAAO,MAAM,cAAc,GAAU,cAAc,MAAM;;;;;;IAgBxD,CAAC"}
+{"version":3,"file":"categories.service.d.ts","sourceRoot":"","sources":["../../../src/services/categories.service.ts"],"names":[],"mappings":"AAcA,eAAO,MAAM,cAAc,GAAU,cAAc,MAAM,EAAE,QAAQ,MAAM;;;;;;IAqBxE,CAAC"}
